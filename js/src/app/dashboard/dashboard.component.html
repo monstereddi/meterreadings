@@ -1,0 +1,11 @@
+<h3>Top Meters</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let meter of meters" class="col-1-4"
+    routerLink="/detail/{{meter.id}}">
+    <div class="module meter">
+      <h4>{{meter.name}}</h4>
+    </div>
+  </a>
+</div>
+
+<app-meter-search></app-meter-search>

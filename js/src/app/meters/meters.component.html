@@ -1,0 +1,39 @@
+<h2>My Meters</h2>
+<div>
+  <label>Meter name:
+    <input #meterName/>
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(meterName.value); meterName.value=''">add</button>
+</div>
+
+<ul class="meters">
+    <li *ngFor="let meter of meters">
+      <a routerLink="/detail/{{meter.id}}">
+         <span class="badge">{{meter.id}}</span> {{meter.name}}
+      </a>
+      <button class="delete" title="delete meter" (click)="delete(meter)">x</button>
+    </li>
+</ul>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Name</td>
+      <td>Beschreibung</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Strom</td>
+      <td>Beschreibung</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Strom 2</td>
+      <td>Beschreibung 2</td>
+    </tr>
+  </tbody>
+</table>

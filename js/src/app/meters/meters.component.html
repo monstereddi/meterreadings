@@ -7,33 +7,21 @@
   <button (click)="add(meterName.value); meterName.value=''">add</button>
 </div>
 
-<ul class="meters">
-    <li *ngFor="let meter of meters">
-      <a routerLink="/detail/{{meter.id}}">
-         <span class="badge">{{meter.id}}</span> {{meter.name}}
-      </a>
-      <button class="delete" title="delete meter" (click)="delete(meter)">x</button>
-    </li>
-</ul>
-
-<table class="table">
-  <thead>
+<table class="table table-hover table-striped">
+  <thead class="table-dark">
     <tr>
-      <td>#</td>
-      <td>Name</td>
-      <td>Beschreibung</td>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Beschreibung</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Strom</td>
-      <td>Beschreibung</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Strom 2</td>
-      <td>Beschreibung 2</td>
+    <tr *ngFor="let meter of meters">
+      <th scope="row"><a routerLink="/detail/{{meter.id}}">{{meter.id}}</a></th>
+      <td>{{meter.name}}</td>
+      <td>{{meter.description}}</td>
+      <td><button type="button" class="btn btn-dark btn-sm" title="delete meter" (click)="delete(meter)">x</button></td>
     </tr>
   </tbody>
 </table>

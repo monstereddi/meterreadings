@@ -1,10 +1,13 @@
 <h2>My Meters</h2>
 <div>
-  <label>Meter name:
+  <label>Name:
     <input #meterName/>
   </label>
+  <label>Description:
+    <input #meterDescription/>
+  </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(meterName.value); meterName.value=''">add</button>
+  <button (click)="add(meterName.value, meterDescription.value); meterName.value=''">add</button>
 </div>
 
 <table class="table table-hover table-striped">
@@ -12,7 +15,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Beschreibung</th>
+      <th scope="col">Description</th>
       <th scope="col"></th>
     </tr>
   </thead>

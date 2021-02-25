@@ -25,10 +25,11 @@ export class MetersComponent implements OnInit {
         .subscribe(meters => this.meters = meters);
   }
 
-  add(name: string): void {
+  add(name: string, description: string): void {
     name = name.trim();
+    description = description.trim();
     if (!name) { return; }
-    this.meterService.addMeter({ name } as Meter)
+    this.meterService.addMeter({name, description} as Meter)
       .subscribe(meter => {this.meters.push(meter); });
   }
 

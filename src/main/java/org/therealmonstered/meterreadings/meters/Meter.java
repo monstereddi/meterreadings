@@ -1,8 +1,13 @@
 package org.therealmonstered.meterreadings.meters;
 
+import org.therealmonstered.meterreadings.readings.Reading;
+
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.Set;
 
 @Entity(name = "Meter")
+@Table(name = "meter")
 public class Meter {
 
   @Id
@@ -11,6 +16,24 @@ public class Meter {
   @Column(unique = true)
   private final String name;
   private final String description;
+
+  @OneToMany(mappedBy = "meter", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private Set<Reading> readings;
+
+  public Set<Reading> getReadings() {
+    return Collections.unmodifiableSet(readings);
+  }
+
+  public boolean addReading(Reading reading) {
+    reading.setMeter(this);
+    return readings.add(reading);
+  }
+
+  public boolean removeReading(Reading reading) {
+    boolean b = readings.remove(reading);
+    if (b) reading.setMeter(null);
+    return b;
+  }
 
   public Meter(long id, String name, String description) {
     this.id = id;

@@ -1,5 +1,7 @@
 package org.therealmonstered.meterreadings.readings;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.therealmonstered.meterreadings.meters.Meter;
 
 import javax.persistence.*;
@@ -15,8 +17,9 @@ public class Reading {
   @Column(name = "value")
   private double reading_value;
 
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
-  @JoinColumn(name = "meter_id", nullable = false)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "meter_id")
+  @Fetch(FetchMode.JOIN)
   private Meter meter;
 
   public Reading(long id, Date date, double reading_value, Meter meter) {
